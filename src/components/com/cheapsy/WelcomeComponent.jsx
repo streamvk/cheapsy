@@ -38,17 +38,16 @@ class WelcomeComponent extends Component {
 
     retrieveMessage() {
 
-      // HelloWorldService.executeHelloWorldService()
-     //.then(response => this.handleSuccessfulResponse(response))
+      HelloWorldService.executeHelloWorldService()
+     .then(response => this.handleSuccessfulResponse(response))
 
-     HelloWorldService.getProductById(1)
-    .then(response => this.handleSuccessfulResponse(response))
-    .catch(error => this.handleError(error))
+    // HelloWorldService.getProductById(1)
+   // .then(response => this.handleSuccessfulResponse(response))
+    //.catch(error => this.handleError(error))
 
     }
 
     handleSuccessfulResponse(response) {
-        console.log(response);
         this.setState({ welcomeMessage : response.data.description })
     }
 

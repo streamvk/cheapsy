@@ -1,11 +1,11 @@
 import axios from 'axios';
-import ReactDOM from "react-dom";
 
 
 class HelloWorldService {
 
     executeHelloWorldService() {
-        return axios.get("http://localhost:8765/say");;
+
+        return axios.get("http://localhost:8765/say");
     };
 
     getProductById(id) {

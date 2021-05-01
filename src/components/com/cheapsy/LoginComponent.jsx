@@ -7,7 +7,7 @@ class LoginComponent extends Component {
         super();
         this.state = {
 
-            username: 'cheapsy',
+            username: ' ',
             password: '',
             hasLoginFailed: false,
             showLoginSuccess: false
@@ -25,31 +25,27 @@ class LoginComponent extends Component {
     }
 
     loginClicked() {
-
-        if (this.state.username === 'cheapsy' && this.state.password === 'dummy') {
-            AuthenticatedService.registerSuccessfulLogin(this.state.username,this.state.password)
-            this.props.history.push(`/welcome/${this.state.username}`)
-
-            // this.setState({
-            //     showLoginSuccess: true,
-            //     hasLoginFailed: false
-            // })
-        }
-
-        else {
+        AuthenticatedService.executeBasicAuthentication(this.state.username,this.state.password)
+        .then(  
+           () => { 
+               console.log('inside loginClicked then');
+        AuthenticatedService.registerSuccessfulLogin(this.state.username,this.state.password);
+        this.props.history.push(`/welcome/${this.state.username}`)
+           })
+        .catch( ()=>{
+            console.log('inside loginClicked catch');
             this.setState({
                 showLoginSuccess: false,
                 hasLoginFailed: true
             })
-        }
+        })
+
     }
 
     render() {
         return (
             <div>
                 <br/>
-              { /* <ShowInvalidCredentialMessage hasLoginFailed={this.state.hasLoginFailed} />
-                <LoginSuccessfulMessage showLoginSuccess={this.state.showLoginSuccess} />*/}
                 {this.state.hasLoginFailed && <div>Invalid Credential</div>}
                 {this.state.showLoginSuccess &&  <div>Successful</div>}
                     User Name : <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />

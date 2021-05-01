@@ -9,12 +9,11 @@ import AuthenticatedService from './AuthenticatedService.js'
     render() {
 
         let isLoggedIn = AuthenticatedService.isUserLoggedIn();
-        console.log(isLoggedIn);
         return (
 
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                   <div> <a className="navbar-brand">Cheapsy</a></div>
+                   <div> <a href="/" className="navbar-brand">Cheapsy</a></div>
                     <ul className="navbar-nav">
                     {  isLoggedIn && <li className="nav-link"><Link to="/">Home</Link></li> }
                     {  isLoggedIn && <li className="nav-link"><Link to="/products">Products</Link></li> }
